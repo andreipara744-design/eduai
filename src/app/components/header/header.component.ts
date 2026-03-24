@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <header class="h-20 border-b border-white/10 flex items-center justify-between px-8 bg-transparent backdrop-blur-md">
+    <header class="h-20 border-b border-white/10 flex items-center justify-between px-8 bg-transparent backdrop-blur-md relative z-[100]">
       <div class="flex items-center gap-4">
         <a routerLink="/" class="text-3xl font-black tracking-tighter text-[#0ABAB5] uppercase pointer-events-auto" style="text-shadow: 0 0 15px rgba(10,186,181,0.4);">edu.ai</a>
       </div>
@@ -43,10 +43,12 @@ import { RouterLink } from '@angular/router';
               {{ user()?.name?.charAt(0) }}
             </div>
             
-            <div class="absolute right-0 top-full mt-4 w-56 bg-black rounded-2xl overflow-hidden border border-[#0ABAB5]/30 hidden group-hover:block shadow-[0_10px_30px_rgba(10,186,181,0.2)] z-50">
-              <a routerLink="/profile" class="block px-6 py-3 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Profile</a>
-              <a routerLink="/settings" class="block px-6 py-3 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Settings</a>
-              <button (click)="logout()" class="w-full text-left px-6 py-3 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Logout</button>
+            <div class="absolute right-0 top-full pt-2 w-48 hidden group-hover:block z-50">
+              <div class="bg-black rounded-xl overflow-hidden border border-[#0ABAB5]/30 shadow-[0_10px_30px_rgba(10,186,181,0.2)]">
+                <a routerLink="/profile" class="block px-5 py-2 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Profile</a>
+                <a routerLink="/settings" class="block px-5 py-2 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Settings</a>
+                <button (click)="logout()" class="w-full text-left px-5 py-2 text-sm hover:bg-[#0ABAB5] hover:text-black transition-colors font-medium uppercase tracking-wider">Logout</button>
+              </div>
             </div>
           </div>
         } @else {

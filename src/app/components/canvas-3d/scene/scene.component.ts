@@ -31,23 +31,34 @@ extend(THREE);
       <ngts-environment [options]="{ preset: 'city' }" />
       
       <ngt-group #bookGroup [position]="[0, 0, 0]" (click)="startExperience()" (pointerover)="onPointerOver()" (pointerout)="onPointerOut()">
+        
         <ngt-mesh [position]="[-1.05, 0, 0]">
           <ngt-box-geometry *args="[0.1, 3, 0.45]" />
           <ngt-mesh-physical-material color="#0ABAB5" [roughness]="0.1" [metalness]="0.8" [clearcoat]="1" [clearcoatRoughness]="0.1" />
         </ngt-mesh>
+        
         <ngt-mesh [position]="[0, 0, -0.2]">
           <ngt-box-geometry *args="[2, 3, 0.05]" />
           <ngt-mesh-physical-material color="#0ABAB5" [roughness]="0.1" [metalness]="0.8" [clearcoat]="1" [clearcoatRoughness]="0.1" />
         </ngt-mesh>
+        
         <ngt-mesh [position]="[-0.05, 0, 0]">
           <ngt-box-geometry *args="[1.9, 2.9, 0.35]" />
           <ngt-mesh-standard-material color="#ffffff" [roughness]="0.9" />
         </ngt-mesh>
+
         <ngt-group #frontCoverGroup [position]="[-1, 0, 0.2]">
+          
           <ngt-mesh [position]="[1, 0, 0]">
             <ngt-box-geometry *args="[2, 3, 0.05]" />
             <ngt-mesh-physical-material color="#0ABAB5" [roughness]="0.1" [metalness]="0.8" [clearcoat]="1" [clearcoatRoughness]="0.1" />
           </ngt-mesh>
+          
+          <ngt-mesh [position]="[0.95, 0, -0.15]">
+            <ngt-box-geometry *args="[1.9, 2.9, 0.25]" />
+            <ngt-mesh-standard-material color="#ffffff" [roughness]="0.9" />
+          </ngt-mesh>
+
         </ngt-group>
       </ngt-group>
     }
@@ -138,7 +149,7 @@ export class SceneComponent {
   totalLissajousPoints = 1000;
 
   // Încărcăm modelul
-  bookGLTF = injectGLTF(() => '/open_book.glb');
+  bookGLTF = injectGLTF(() => 'assets/open_book.glb');
 
   bookGroup = viewChild<ElementRef<THREE.Group>>('bookGroup');
   frontCoverGroup = viewChild<ElementRef<THREE.Group>>('frontCoverGroup');

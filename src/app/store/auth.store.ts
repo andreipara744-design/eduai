@@ -19,12 +19,17 @@ export const AuthStore = {
   
   setTheme: (theme: Theme) => {
     themeSignal.set(theme);
-    if (theme === 'LIGHT') {
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
-    } else {
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
+    // Verificăm dacă document există (pentru Vercel SSR)
+    if (typeof document !== 'undefined') {
+      if (theme === 'LIGHT') {
+        document.body.classList.add('light-mode');
+        document.body.classList.remove('dark-mode');
+        document.documentElement.classList.remove('dark'); // Adăugat pentru Tailwind
+      } else {
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        document.documentElement.classList.add('dark'); // Adăugat pentru Tailwind
+      }
     }
   },
   
@@ -38,3 +43,11 @@ export const AuthStore = {
   isAuthenticated: computed(() => userSignal() !== null),
   role: computed(() => userSignal()?.role || 'GUEST')
 };
+
+
+// FIX BUG: Aplic Dark Mode instant la prima randare
+
+if (typeof document !== 'undefined') {
+  document.body.classList.add('dark-mode');
+  document.documentElement.classList.add('dark');
+}

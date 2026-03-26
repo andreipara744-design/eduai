@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -11,16 +12,8 @@ import { UIStore } from './store/ui.store';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent, Canvas3DComponent],
   template: `
-    @if (show3D()) {
-      @defer (on immediate) {
-        <app-canvas-3d />
-      } @placeholder {
-        <div class="fixed inset-0 bg-black flex items-center justify-center z-0">
-          <div class="text-[#0ABAB5] animate-pulse font-bold tracking-widest uppercase text-xl">
-            Se initializează experienta 3D...
-          </div>
-        </div>
-      }
+    @if (show3D() && isBrowser()) {
+      <app-canvas-3d />
     }
     
     <div class="ui-shell flex flex-col h-screen" style="z-index: 50; pointer-events: none; position: relative;">
@@ -43,7 +36,20 @@ import { UIStore } from './store/ui.store';
     </div>
   `
 })
-export class App {
+export class App implements OnInit {
   show3D = UIStore.show3DCanvas;
   hasEntered = UIStore.hasEntered;
+  
+  // Injectăm instrumentul care ne spune unde rulează codul
+  private platformId = inject(PLATFORM_ID);
+  
+  // Semnalul nostru de siguranță
+  isBrowser = signal(false);
+
+  ngOnInit() {
+    // Dacă codul a ajuns pe ecranul unui utilizator (are placă video/browser), dăm undă verde la 3D
+    if (isPlatformBrowser(this.platformId)) {
+      this.isBrowser.set(true);
+    }
+  }
 }

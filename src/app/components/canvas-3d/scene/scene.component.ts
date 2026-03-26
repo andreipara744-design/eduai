@@ -150,7 +150,7 @@ export class SceneComponent {
 
   // Încărcăm modelul
  // Adăugăm parametrul "true" pentru a folosi decodorul Draco automat
-bookGLTF = injectGLTF(() => '/assets/open_book.glb');
+bookGLTF = injectGLTF(() => 'assets/open_book.glb');
 
   bookGroup = viewChild<ElementRef<THREE.Group>>('bookGroup');
   frontCoverGroup = viewChild<ElementRef<THREE.Group>>('frontCoverGroup');

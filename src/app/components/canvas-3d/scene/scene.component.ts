@@ -149,7 +149,8 @@ export class SceneComponent {
   totalLissajousPoints = 1000;
 
   // Încărcăm modelul
-  bookGLTF = injectGLTF(() => 'assets/open_book.glb');
+ // Adăugăm parametrul "true" pentru a folosi decodorul Draco automat
+bookGLTF = injectGLTF(() => '/assets/open_book.glb');
 
   bookGroup = viewChild<ElementRef<THREE.Group>>('bookGroup');
   frontCoverGroup = viewChild<ElementRef<THREE.Group>>('frontCoverGroup');

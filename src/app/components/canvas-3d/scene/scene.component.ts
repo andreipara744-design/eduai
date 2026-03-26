@@ -149,7 +149,7 @@ export class SceneComponent {
   totalLissajousPoints = 1000;
 
   // Încărcăm modelul
-  bookGLTF = injectGLTF(() => '/assets/open_book.glb');
+  bookGLTF = injectGLTF(() => 'assets/open_book.glb');
 
   bookGroup = viewChild<ElementRef<THREE.Group>>('bookGroup');
   frontCoverGroup = viewChild<ElementRef<THREE.Group>>('frontCoverGroup');

@@ -12,7 +12,15 @@ import { UIStore } from './store/ui.store';
   imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent, Canvas3DComponent],
   template: `
     @if (show3D()) {
-      <app-canvas-3d />
+      @defer (on immediate) {
+        <app-canvas-3d />
+      } @placeholder {
+        <div class="fixed inset-0 bg-black flex items-center justify-center z-0">
+          <div class="text-[#0ABAB5] animate-pulse font-bold tracking-widest uppercase text-xl">
+            Se inițializează experiența 3D...
+          </div>
+        </div>
+      }
     }
     
     <div class="ui-shell flex flex-col h-screen" style="z-index: 50; pointer-events: none; position: relative;">

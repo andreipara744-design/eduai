@@ -17,7 +17,7 @@ import { UIStore } from './store/ui.store';
       } @placeholder {
         <div class="fixed inset-0 bg-black flex items-center justify-center z-0">
           <div class="text-[#0ABAB5] animate-pulse font-bold tracking-widest uppercase text-xl">
-            Se inițializează experiența 3D...
+            Se initializează experienta 3D...
           </div>
         </div>
       }
